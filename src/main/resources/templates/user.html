@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+
+<h1>User page </h1>
+<div th:insert="logout :: logout"></div>
+<br>
+<div th:object="${user}" class="User">
+    ID: <span th:utext="${user.id}"></span><br>
+    Name: <span th:utext="${user.username}"></span><br>
+    Surname: <span th:utext="${user.surname}"></span><br>
+    Email: <span th:utext="${user.email}"></span><br>
+</div>
+<br>
+
+<div class="row" th:if="${#request.isUserInRole('ADMIN')}">
+    <form method="get" th:action="@{/admin}">
+        <input type="submit" value="Admin page">
+    </form>
+</div>
+
+</body>
+</html>
+
+</html>

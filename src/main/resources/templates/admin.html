@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+<body>
+<div th:insert="logout :: logout"></div>
+<!--//-->
+<div>
+
+    <table class="table table-striped table-hover" th:text-align="center">
+        <tr>
+            <th th:width="60">Id</th>
+            <th th:width="120">First name</th>
+            <th th:width="120">Last name</th>
+            <th th:width="180">Email</th>
+            <th th:width="180">Role</th>
+            <th th:width="80"></th>
+            <th th:width="80"></th>
+
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:align="center">
+                <p th:href="@{/{id}(id=${user.id})}" th:text="${user.id}">.</p>
+            </td>
+            <td>
+                <p th:href="@{/{id}(id=${user.getId()})}" th:text="${user.username}">.</p>
+            </td>
+            <td>
+                <p th:href="@{/{id}(id=${user.getId()})}" th:text="${user.surname}">.</p>
+            </td>
+            <td>
+                <p th:href="@{/{id}(id=${user.getId()})}" th:text="${user.email}">.</p>
+            </td>
+            <td>
+                <div th:each=" role : ${user.roles}">
+                    <p th:text="${role.name}"></p>
+                </div>
+            </td>
+            <td th:align="center">
+                <form method="get" th:action="@{/admin/update}">
+                    <input type="number" hidden name="id" th:value="${user.id}"/>
+                    <p><input type="submit" value="Edit"></p>
+                </form>
+            </td>
+            <td th:align="center">
+                <form method="post" th:action="@{/admin/delete}">
+                    <input type="number" hidden name="id" th:value="${user.id}"/>
+                    <p><input type="submit" value="Delete"></p>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<br>
+<h2>Add User</h2>
+<br>
+<form class="table table-striped table-hover" th:name="user" method="post" th:action="@{/admin/add}">
+    Name<span>     </span><label><input type="text" name="username"></label><br><br>
+    Surname<span>  </span><label><input type="text" name="surname"></label><br><br>
+    Email<span>    </span><label><input type="text" name="email"></label><br><br>
+    Password<span> </span><label><input type="password" name="password"></label><br><br>
+
+    <select th:name="role" multiple="multiple" size="2" required>
+        <option th:each="role : ${roles}"
+                th:value="${role.id}"
+                th:text="${role.name}">Wireframe
+        </option>
+    </select>
+
+    <input type="submit" value="Add user"><br>
+</form>
+
+<form method="get" th:action="@{/user}">
+    <input type="submit" value="User page">
+</form>
+
+</body>
+</html>

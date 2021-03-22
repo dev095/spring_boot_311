@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="headerfiles">
+    <meta charset="UTF-8"/>
+    <title>My Logout</title>
+</head>
+
+<body>
+
+<form th:fragment="logout" method="post" th:action="@{/logout}">
+    <p><input type="submit" value="Logout"></p>
+</form>
+
+</body>
+</html>
