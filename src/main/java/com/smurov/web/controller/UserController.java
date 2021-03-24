@@ -73,39 +73,5 @@ public class UserController {
 		model.addAttribute("user",user);
 		return "update";
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-//	@RequestMapping(value = "/save", method = RequestMethod.POST)
-//	@ResponseBody
-//	public User save(@RequestBody User user) {
-//		User userResponse = (User) userService.saveUser(user);
-//		return userResponse;
-//	}
-//
-//	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-//	@ResponseBody
-//	public User getUser(@PathVariable Long id) {
-//		User userResponse = (User) userService.getUser(id);
-//		return userResponse;
-//	}
-//
-//	@RequestMapping(value = "/admin/delete", method = RequestMethod.DELETE)
-//	@ResponseBody
-//	public String deleteUser(@PathVariable Long id) {
-//		userService.deleteUser(id);
-//		return "redirect:/admin";
-//	}
 }
 
